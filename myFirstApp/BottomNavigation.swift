@@ -23,6 +23,7 @@ class BottomNavigation: UIViewController {
     }
     
     func setBottomNavBarItems() {
+        
         let image1 = UIImage.fontAwesomeIcon(name: .home, style: .solid, textColor: .darkGray, size: CGSize(width: 30, height: 30))
         let tabBarItem1 = UITabBarItem(title: "Home", image: image1, tag: 0)
         let image2 = UIImage.fontAwesomeIcon(name: .calendarAlt, style: .regular, textColor: .darkGray, size: CGSize(width: 30, height: 30))
@@ -50,6 +51,7 @@ class BottomNavigation: UIViewController {
                                        height: size.height)
         bottomNavBar.frame = bottomNavBarFrame
     }
+    
     override func viewWillLayoutSubviews() {
       super.viewWillLayoutSubviews()
       layoutBottomNavBar()
