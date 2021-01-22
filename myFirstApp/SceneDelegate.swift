@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         //guard let _ = (scene as? UIWindowScene) else { return }
         
         //window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = BottomNavigation()
+        window?.rootViewController = CalendarView()
         window?.makeKeyAndVisible()
     }
 

@@ -1,5 +1,6 @@
 PODS:
   - FontAwesome.swift (1.9.1)
+  - FSCalendar (2.8.2)
   - MaterialComponents (112.1.0):
     - MaterialComponents/ActionSheet (= 112.1.0)
     - "MaterialComponents/ActionSheet+Theming (= 112.1.0)"
@@ -637,11 +638,13 @@ PODS:
 
 DEPENDENCIES:
   - FontAwesome.swift
+  - FSCalendar
   - MaterialComponents
 
 SPEC REPOS:
   trunk:
     - FontAwesome.swift
+    - FSCalendar
     - MaterialComponents
     - MDFInternationalization
     - MDFTextAccessibility
@@ -650,12 +653,13 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   FontAwesome.swift: 6b52cb7be66eacd28cbfaa0ca7ffd0de4a186a1d
+  FSCalendar: e6a2eb9c571bf0719ed797ef807e08426753c241
   MaterialComponents: ba54523b921faa5c2adaaa692048c6b95a09263d
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
   MotionAnimator: ee16aa30567c5bae0fb2750c132915829cfaaf8a
   MotionInterchange: ead0e3ae1f3a5fb539e289debbc7ae036160a10d
 
-PODFILE CHECKSUM: 969b28a6db5208dfd11344437ad4794e5aae7a21
+PODFILE CHECKSUM: 6eda05f1ff8c56d16b7bc39b469191ece0390fea
 
 COCOAPODS: 1.10.0
