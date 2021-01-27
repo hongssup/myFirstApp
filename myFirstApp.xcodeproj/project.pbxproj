@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7E8E1A073AA1324BE2F64352 /* Pods_myFirstApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09841DB6A8FCE975ECDAEED5 /* Pods_myFirstApp.framework */; };
 		F1412D1D25BAAEAB002E6FC2 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1412D1C25BAAEAB002E6FC2 /* CalendarView.swift */; };
+		F1412D2A25BFECFE002E6FC2 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1412D2925BFECFE002E6FC2 /* HomeViewController.swift */; };
 		F145B4CB25B9DC25001375A1 /* BottomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F145B4CA25B9DC25001375A1 /* BottomNavigationBar.swift */; };
 		F15E41D725B833AA00248BD5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15E41D625B833AA00248BD5 /* AppDelegate.swift */; };
 		F15E41D925B833AA00248BD5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15E41D825B833AA00248BD5 /* SceneDelegate.swift */; };
@@ -21,6 +22,7 @@
 		9A419815A9D061D056FB8D0E /* Pods-myFirstApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myFirstApp.debug.xcconfig"; path = "Target Support Files/Pods-myFirstApp/Pods-myFirstApp.debug.xcconfig"; sourceTree = "<group>"; };
 		B96A28BA5AA5C438DA2A22F1 /* Pods-myFirstApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myFirstApp.release.xcconfig"; path = "Target Support Files/Pods-myFirstApp/Pods-myFirstApp.release.xcconfig"; sourceTree = "<group>"; };
 		F1412D1C25BAAEAB002E6FC2 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		F1412D2925BFECFE002E6FC2 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		F145B4CA25B9DC25001375A1 /* BottomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomNavigationBar.swift; sourceTree = "<group>"; };
 		F15E41D325B833AA00248BD5 /* myFirstApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myFirstApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F15E41D625B833AA00248BD5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				F15E41E125B833AD00248BD5 /* LaunchScreen.storyboard */,
 				F15E41E425B833AD00248BD5 /* Info.plist */,
 				F145B4CA25B9DC25001375A1 /* BottomNavigationBar.swift */,
+				F1412D2925BFECFE002E6FC2 /* HomeViewController.swift */,
 				F1412D1C25BAAEAB002E6FC2 /* CalendarView.swift */,
 			);
 			path = myFirstApp;
@@ -204,6 +207,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1412D2A25BFECFE002E6FC2 /* HomeViewController.swift in Sources */,
 				F1412D1D25BAAEAB002E6FC2 /* CalendarView.swift in Sources */,
 				F15E41D725B833AA00248BD5 /* AppDelegate.swift in Sources */,
 				F145B4CB25B9DC25001375A1 /* BottomNavigationBar.swift in Sources */,

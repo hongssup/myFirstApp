@@ -15,7 +15,7 @@ class BottomNavigation: UITabBarController, MDCBottomNavigationBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGray6
-        let view1 = UIViewController()
+        let view1 = HomeViewController()
         let view2 = CalendarView()
         let view3 = UIViewController()
         let image1 = UIImage.fontAwesomeIcon(name: .home, style: .solid, textColor: .darkGray, size: CGSize(width: 30, height: 30))
