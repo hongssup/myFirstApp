@@ -10,7 +10,7 @@ import Foundation
 import FSCalendar
 import MaterialComponents
 
-class CalendarView: UIViewController, FSCalendarDataSource, FSCalendarDelegate {
+class CalendarViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate {
     
     fileprivate weak var calendar: FSCalendar!
     

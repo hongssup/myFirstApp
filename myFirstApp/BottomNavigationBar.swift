@@ -16,8 +16,8 @@ class BottomNavigation: UITabBarController, MDCBottomNavigationBarDelegate {
         super.viewDidLoad()
         view.backgroundColor = .systemGray6
         let view1 = HomeViewController()
-        let view2 = CalendarView()
-        let view3 = UIViewController()
+        let view2 = CalendarViewController()
+        let view3 = WishListViewController()
         let image1 = UIImage.fontAwesomeIcon(name: .home, style: .solid, textColor: .darkGray, size: CGSize(width: 30, height: 30))
         let image2 = UIImage.fontAwesomeIcon(name: .calendarAlt, style: .regular, textColor: .darkGray, size: CGSize(width: 30, height: 30))
         let image3 = UIImage.fontAwesomeIcon(name: .listAlt, style: .regular, textColor: .darkGray, size: CGSize(width: 30, height: 30))
