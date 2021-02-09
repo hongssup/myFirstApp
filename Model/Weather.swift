@@ -8,12 +8,23 @@
 import Foundation
 
 struct WeatherResponse: Decodable {
-    let main: Weather
+    let timezone: String
+    let current: Current
+
 }
 
-struct Weather : Decodable{
+struct Current : Decodable{
     let temp: Double
+    let feels_like: Double
     let humidity: Int
+    let clouds: Int
+    let wind_speed: Double
+    let weather: [Weather]
 }
 
+struct Weather: Decodable {
+    let main: String
+    let description: String
+    let icon: String
+}
 

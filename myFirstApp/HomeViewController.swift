@@ -16,11 +16,13 @@ class HomeViewController: UIViewController {
     let currentDate = Date()
     let dateFormatter = DateFormatter()
     
-    private var weather: Weather?
+    private var currentWeather: Current?
     
     var temperature: Double = 0.0
-
+    var icon: String = ""
     let weatherLabel = UILabel()
+    let weatherImage = UIImageView()
+    
     
 
     override func loadView() {
@@ -45,11 +47,12 @@ class HomeViewController: UIViewController {
     func fetchWeather() {
         WeatherService().getWeather { result in
             switch result {
-            case .success(let weather):
+            case .success(let weatherResponse):
                 DispatchQueue.main.async {
-                    self.weather = weather
-                    self.temperature = weather?.temp ?? 0.0
+                    self.currentWeather = weatherResponse.current
+                    self.temperature = self.currentWeather?.temp ?? 0.0
                     self.weatherLabel.text = "temp: \(self.temperature)"
+                    self.weatherImage.image = UIImage(named: self.currentWeather?.weather[0].icon ?? "01d")
                 }
             case .failure(_ ):
                 print("error")
@@ -61,6 +64,7 @@ class HomeViewController: UIViewController {
         view.addSubview(daysLabel)
         view.addSubview(dateLabel)
         view.addSubview(weatherLabel)
+        view.addSubview(weatherImage)
         
         view.subviews.forEach { view in
             view.translatesAutoresizingMaskIntoConstraints = false
@@ -84,7 +88,10 @@ class HomeViewController: UIViewController {
             dateLabel.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
             
             weatherLabel.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -50),
-            weatherLabel.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 20)
+            weatherLabel.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 20),
+            
+            weatherImage.bottomAnchor.constraint(equalTo: weatherLabel.topAnchor, constant: -8),
+            weatherImage.leadingAnchor.constraint(equalTo: weatherLabel.leadingAnchor)
         ])
     }
     
