@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 class HomeViewController: UIViewController {
+    
     let daysLabel = UILabel()
     let dateLabel = UILabel()
     var daysCount:Int = 0
@@ -17,17 +18,14 @@ class HomeViewController: UIViewController {
     let dateFormatter = DateFormatter()
     
     private var currentWeather: Current?
-    
     var temperature: Double = 0.0
     var icon: String = ""
     let weatherLabel = UILabel()
     let weatherImage = UIImageView()
     
-    
-
     override func loadView() {
         let view = UIView(frame: UIScreen.main.bounds)
-        view.backgroundColor = .white
+        view.backgroundColor = .systemGray6
         self.view = view
     }
     
@@ -40,7 +38,7 @@ class HomeViewController: UIViewController {
     }
     
     
-    override func viewWillLayoutSubviews() {
+    override func viewWillAppear(_ animated: Bool) {
         fetchWeather()
     }
     

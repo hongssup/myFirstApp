@@ -14,9 +14,11 @@ class CalendarViewController: UIViewController, FSCalendarDataSource, FSCalendar
     
     fileprivate weak var calendar: FSCalendar!
     
+    let addScheduleButton = MDCFloatingButton()
+    
     override func loadView() {
         let view = UIView(frame: UIScreen.main.bounds)
-        view.backgroundColor = .systemGray6
+        view.backgroundColor = .white
         self.view = view
         
         //let calendar = FSCalendar(frame: CGRect(x: 20, y: 30, width: 320, height: 400))
@@ -35,12 +37,18 @@ class CalendarViewController: UIViewController, FSCalendarDataSource, FSCalendar
     }
     
     private func setupCalendar() {
+        
+        view.addSubview(addScheduleButton)
         calendar.translatesAutoresizingMaskIntoConstraints = false
+        addScheduleButton.translatesAutoresizingMaskIntoConstraints = false
         calendar.appearance.headerTitleColor = MDCPalette.deepOrange.tint500
         calendar.appearance.todayColor = .none
         calendar.appearance.titleTodayColor = MDCPalette.deepOrange.tint500
         calendar.appearance.weekdayTextColor = .darkGray
         calendar.appearance.titleWeekendColor = MDCPalette.deepOrange.tint800
+        calendar.appearance.selectionColor = .darkGray
+        
+        addScheduleButton.setElevation(ShadowElevation(2), for: .normal)
     }
     
     private func addConstraints() {
@@ -49,7 +57,12 @@ class CalendarViewController: UIViewController, FSCalendarDataSource, FSCalendar
             calendar.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 20),
             calendar.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 10),
             calendar.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -10),
-            calendar.heightAnchor.constraint(equalToConstant: 400)        
+            calendar.heightAnchor.constraint(equalToConstant: 400),
+            
+            addScheduleButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -28),
+            addScheduleButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -28),
+            addScheduleButton.heightAnchor.constraint(equalToConstant: 40),
+            addScheduleButton.widthAnchor.constraint(equalToConstant: 40)
         ])
     }
 }
