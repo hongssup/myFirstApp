@@ -38,4 +38,15 @@ class WishListViewController:MDCCollectionViewController {
         }
         return cell 
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellHeightAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+        let viewController = FoodListViewController()
+        //self.navigationController?.pushViewController(viewController, animated: true)
+        self.present(viewController, animated: true, completion: nil)
+    }
 }
