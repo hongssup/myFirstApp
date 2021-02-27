@@ -39,6 +39,7 @@ class HomeViewController: UIViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         fetchWeather()
     }
     
@@ -103,5 +104,9 @@ class HomeViewController: UIViewController {
     
     func days(from date: Date) -> Int {
         return calendar.dateComponents([.day], from: date, to: currentDate).day ?? 0
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
 }

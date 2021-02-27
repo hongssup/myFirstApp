@@ -12,6 +12,7 @@ import FontAwesome_swift
 
 class BottomNavigation: UITabBarController, MDCBottomNavigationBarDelegate {
     let bottomNavBar = MDCBottomNavigationBar()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGray6

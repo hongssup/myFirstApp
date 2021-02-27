@@ -13,10 +13,14 @@ class WishListViewController:MDCCollectionViewController {
     
     let reusableIdentifierItem = "itemCellIdentifier"
     var wishList: [String] = []
+    override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
+    override var prefersStatusBarHidden: Bool { return false }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Wish List"
+        self.navigationController?.navigationBar.barStyle = .black
+        //self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationItem.title = "Wish List"
         self.collectionView?.register(MDCCollectionViewTextCell.self, forCellWithReuseIdentifier: reusableIdentifierItem)
         self.styler.cellStyle = .card
         wishList = ["먹고 싶은거", "갖고 싶은거", "하고 싶은거", "가고 싶은 곳"]
@@ -44,9 +48,11 @@ class WishListViewController:MDCCollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let listTitle = wishList[indexPath.item]
 
-        let viewController = FoodListViewController()
-        //self.navigationController?.pushViewController(viewController, animated: true)
-        self.present(viewController, animated: true, completion: nil)
+        let viewController = ListViewController(title: listTitle)
+        self.navigationController?.pushViewController(viewController, animated: true)
+        //self.present(viewController, animated: true, completion: nil)
+        //show(viewController, sender: self)
     }
 }
