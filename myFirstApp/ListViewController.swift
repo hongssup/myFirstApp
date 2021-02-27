@@ -12,7 +12,7 @@ import MaterialComponents
 class ListViewController: MDCCollectionViewController {
     
     init(title: String) {
-        super.init(nibName: nil, bundle: nil)
+        super.init(collectionViewLayout: UICollectionViewLayout())
         self.title = title
     }
     
@@ -22,9 +22,10 @@ class ListViewController: MDCCollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //title = "먹고 싶은 거"
-        print("food")
-        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(addTapped))
+    }
+    
+    @objc func addTapped(sender: UIBarButtonItem) {
         
     }
 }

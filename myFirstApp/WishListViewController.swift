@@ -18,12 +18,13 @@ class WishListViewController:MDCCollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.barStyle = .black
-        //self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationItem.title = "Wish List"
+        self.navigationController?.navigationBar.barStyle = .black  //difference with barTintColor?
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationItem.title = "Wish List"
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         self.collectionView?.register(MDCCollectionViewTextCell.self, forCellWithReuseIdentifier: reusableIdentifierItem)
         self.styler.cellStyle = .card
-        wishList = ["먹고 싶은거", "갖고 싶은거", "하고 싶은거", "가고 싶은 곳"]
+        wishList = ["먹고 싶은거", "갖고 싶은거", "하고 싶은거", "가고 싶은 곳"]        
     }
     
     // MARK: UICollectionViewDataSource
