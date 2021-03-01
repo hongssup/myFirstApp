@@ -5,5 +5,7 @@ target 'myFirstApp' do
   pod 'MaterialComponents'
   pod 'FontAwesome.swift'
   pod 'FSCalendar'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Database'
 
 end

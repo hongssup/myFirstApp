@@ -45,7 +45,7 @@ class WishListViewController:MDCCollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellHeightAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 72
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

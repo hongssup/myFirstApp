@@ -8,11 +8,15 @@
 import Foundation
 import UIKit
 import MaterialComponents
+import FirebaseDatabase
 
 class ListViewController: MDCCollectionViewController {
     
+    let ref = Database.database(url: "https://my-first-eb314-default-rtdb.firebaseio.com/").reference(withPath: "wish list")
+    
     init(title: String) {
         super.init(collectionViewLayout: UICollectionViewLayout())
+        UINavigationBarAppearance().titleTextAttributes = [.foregroundColor: UIColor.white]
         self.title = title
     }
     
