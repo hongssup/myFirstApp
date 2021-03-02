@@ -16,7 +16,7 @@ class ListViewController: MDCCollectionViewController {
     
     init(title: String) {
         super.init(collectionViewLayout: UICollectionViewLayout())
-        UINavigationBarAppearance().titleTextAttributes = [.foregroundColor: UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         self.title = title
     }
     
@@ -30,6 +30,8 @@ class ListViewController: MDCCollectionViewController {
     }
     
     @objc func addTapped(sender: UIBarButtonItem) {
-        
+        let viewController = AddListViewController()
+        self.present(viewController, animated: true, completion: nil)
+        //show(viewController, sender: self)
     }
 }
