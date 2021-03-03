@@ -24,6 +24,7 @@
 		F1854D3F25EC78A6009B42AC /* AddListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1854D3E25EC78A6009B42AC /* AddListViewController.swift */; };
 		F1854D4225EF476C009B42AC /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1854D4125EF476C009B42AC /* ListCell.swift */; };
 		F1854D4525EF7C7D009B42AC /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1854D4425EF7C7D009B42AC /* WeatherViewController.swift */; };
+		F1854D4925EF8CA8009B42AC /* AnniversaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1854D4825EF8CA8009B42AC /* AnniversaryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		F1854D3E25EC78A6009B42AC /* AddListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddListViewController.swift; sourceTree = "<group>"; };
 		F1854D4125EF476C009B42AC /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		F1854D4425EF7C7D009B42AC /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
+		F1854D4825EF8CA8009B42AC /* AnniversaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnniversaryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 				F1854D3E25EC78A6009B42AC /* AddListViewController.swift */,
 				F1854D4125EF476C009B42AC /* ListCell.swift */,
 				F1854D4425EF7C7D009B42AC /* WeatherViewController.swift */,
+				F1854D4825EF8CA8009B42AC /* AnniversaryViewController.swift */,
 			);
 			path = myFirstApp;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 				F145B4CB25B9DC25001375A1 /* BottomNavigationBar.swift in Sources */,
 				F15E41D925B833AA00248BD5 /* SceneDelegate.swift in Sources */,
 				F1854CF725E66B5B009B42AC /* ListViewController.swift in Sources */,
+				F1854D4925EF8CA8009B42AC /* AnniversaryViewController.swift in Sources */,
 				F16A10A825CBD46C001EB4E9 /* WeatherView.swift in Sources */,
 				F1854D4225EF476C009B42AC /* ListCell.swift in Sources */,
 				F1412D2E25C2D24C002E6FC2 /* WishListViewController.swift in Sources */,

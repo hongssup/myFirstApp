@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
     let daysLabel = UILabel()
     let dateLabel = UILabel()
@@ -18,7 +18,12 @@ class HomeViewController: UIViewController {
     let dateFormatter = DateFormatter()
     
     private let weatherButton = UIButton()
+    private let annivButton = UIButton()
+    private let ccButton = UIButton()
     
+    lazy var pickerView = UIPickerView()
+    lazy var pickerData: [Int] = []
+    var pickerNum: String = ""
     
     override func loadView() {
         let view = UIView(frame: UIScreen.main.bounds)
@@ -28,6 +33,13 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        pickerView = UIPickerView(frame: CGRect(x: 10, y: 50, width: 250, height: 150))
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        
+        let minNum = 0
+        let maxNum = 30
+        pickerData = Array(stride(from: minNum, to: maxNum + 1, by: 1))
         
         calculateDays()
         setupViews()
@@ -37,12 +49,15 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
     }
     
     private func setupViews() {
         view.addSubview(daysLabel)
         view.addSubview(dateLabel)
         view.addSubview(weatherButton)
+        view.addSubview(annivButton)
+        view.addSubview(ccButton)
         
         view.subviews.forEach { view in
             view.translatesAutoresizingMaskIntoConstraints = false
@@ -61,6 +76,15 @@ class HomeViewController: UIViewController {
         weatherButton.setImage(.fontAwesomeIcon(name: .cloudSun, style: .solid, textColor: .white, size: CGSize(width: 37, height: 37)), for: .normal)
         weatherButton.addTarget(self, action: #selector(showWeather), for: .touchUpInside)
         
+        annivButton.backgroundColor = .gray
+        annivButton.layer.cornerRadius = 24
+        annivButton.setImage(.fontAwesomeIcon(name: .heart, style: .solid, textColor: .white, size: CGSize(width: 36, height: 36)), for: .normal)
+        annivButton.addTarget(self, action: #selector(showAnniversary), for: .touchUpInside)
+        
+        ccButton.backgroundColor = .gray
+        ccButton.layer.cornerRadius = 24
+        ccButton.setTitle(pickerNum, for: .normal)
+        ccButton.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
     }
     
     private func addConstraints() {
@@ -75,7 +99,17 @@ class HomeViewController: UIViewController {
             weatherButton.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 32),
             weatherButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -50),
             weatherButton.widthAnchor.constraint(equalToConstant: 52),
-            weatherButton.heightAnchor.constraint(equalToConstant: 52)
+            weatherButton.heightAnchor.constraint(equalToConstant: 52),
+            
+            annivButton.leadingAnchor.constraint(equalTo: weatherButton.trailingAnchor, constant: 16),
+            annivButton.bottomAnchor.constraint(equalTo: weatherButton.bottomAnchor),
+            annivButton.widthAnchor.constraint(equalTo: weatherButton.widthAnchor),
+            annivButton.heightAnchor.constraint(equalTo: weatherButton.heightAnchor),
+            
+            ccButton.leadingAnchor.constraint(equalTo: annivButton.trailingAnchor, constant: 16),
+            ccButton.bottomAnchor.constraint(equalTo: weatherButton.bottomAnchor),
+            ccButton.widthAnchor.constraint(equalTo: weatherButton.widthAnchor),
+            ccButton.heightAnchor.constraint(equalTo: weatherButton.heightAnchor)
         ])
     }
     
@@ -94,6 +128,34 @@ class HomeViewController: UIViewController {
     @objc func showWeather() {
         let viewController = weatherViewController()
         present(viewController, animated: true, completion: nil)
+    }
+    
+    @objc func showAnniversary() {
+        let viewController = anniversaryViewController()
+        present(viewController, animated: true, completion: nil)
+    }
+    
+    @objc func showAlert() {
+        let ac = UIAlertController(title: "잔여갯수", message: "\n\n\n\n\n\n\n\n\n\n", preferredStyle: .alert)
+        //ac.isModalInPresentation = true
+        ac.view.addSubview(pickerView)
+        ac.addAction(UIAlertAction(title: "완료", style: .default, handler: { _ in
+            let pickerValue = self.pickerData[self.pickerView.selectedRow(inComponent: 0)]
+            print("Picker value: \(pickerValue) was selected")
+        }))
+        ac.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
+        present(ac, animated: true)
+    }
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerData.count
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        pickerNum = "\(pickerData[row])"
+        ccButton.setTitle(pickerNum, for: .normal)
+        return pickerNum
     }
     
     override func viewWillDisappear(_ animated: Bool) {
