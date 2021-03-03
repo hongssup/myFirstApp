@@ -23,6 +23,7 @@
 		F1854CFB25EC7037009B42AC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1854CFA25EC7036009B42AC /* GoogleService-Info.plist */; };
 		F1854D3F25EC78A6009B42AC /* AddListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1854D3E25EC78A6009B42AC /* AddListViewController.swift */; };
 		F1854D4225EF476C009B42AC /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1854D4125EF476C009B42AC /* ListCell.swift */; };
+		F1854D4525EF7C7D009B42AC /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1854D4425EF7C7D009B42AC /* WeatherViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		F1854CFA25EC7036009B42AC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F1854D3E25EC78A6009B42AC /* AddListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddListViewController.swift; sourceTree = "<group>"; };
 		F1854D4125EF476C009B42AC /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
+		F1854D4425EF7C7D009B42AC /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 				F1854CF625E66B5B009B42AC /* ListViewController.swift */,
 				F1854D3E25EC78A6009B42AC /* AddListViewController.swift */,
 				F1854D4125EF476C009B42AC /* ListCell.swift */,
+				F1854D4425EF7C7D009B42AC /* WeatherViewController.swift */,
 			);
 			path = myFirstApp;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 				F1412D2A25BFECFE002E6FC2 /* HomeViewController.swift in Sources */,
 				F1412D1D25BAAEAB002E6FC2 /* CalendarViewController.swift in Sources */,
 				F1854D3F25EC78A6009B42AC /* AddListViewController.swift in Sources */,
+				F1854D4525EF7C7D009B42AC /* WeatherViewController.swift in Sources */,
 				F15E41D725B833AA00248BD5 /* AppDelegate.swift in Sources */,
 				F145B4CB25B9DC25001375A1 /* BottomNavigationBar.swift in Sources */,
 				F15E41D925B833AA00248BD5 /* SceneDelegate.swift in Sources */,
