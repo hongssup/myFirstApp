@@ -131,8 +131,8 @@ class HomeViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     }
     
     @objc func showAnniversary() {
-        let viewController = anniversaryViewController()
-        present(viewController, animated: true, completion: nil)
+        let viewController2 = anniversaryViewController()
+        present(viewController2, animated: true, completion: nil)
     }
     
     @objc func showAlert() {
@@ -144,7 +144,9 @@ class HomeViewController: UIViewController, UIPickerViewDataSource, UIPickerView
             print("Picker value: \(pickerValue) was selected")
         }))
         ac.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
+        
         present(ac, animated: true)
+        
     }
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1

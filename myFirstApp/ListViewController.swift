@@ -10,13 +10,16 @@ import UIKit
 import MaterialComponents
 import FirebaseDatabase
 
-class ListViewController: UITableViewController {
+class ListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let ref = Database.database(url: "https://my-first-eb314-default-rtdb.firebaseio.com/").reference(withPath: "wish list")
+    var listTableView = UITableView()
+    var listItems = ["a", "b", "c" , "d"]
+    let cellReuseIdentifier = "cell"
     
     init(title: String) {
-        super.init(style: UITableView.Style.plain)
-        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+        super.init(nibName: nil, bundle: nil)
+        //navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         self.title = title
     }
     
@@ -24,8 +27,19 @@ class ListViewController: UITableViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func loadView() {
+        let view = UIView(frame: UIScreen.main.bounds)
+        view.backgroundColor = .white
+        self.view = view
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        listTableView.frame = CGRect(x: 0, y: 40, width: view.frame.width-20, height: view.frame.height-100)
+        self.listTableView.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
+        listTableView.delegate = self
+        listTableView.dataSource = self
+        self.view.addSubview(listTableView)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(addTapped))
     }
     
@@ -34,4 +48,32 @@ class ListViewController: UITableViewController {
         self.present(viewController, animated: true, completion: nil)
         //show(viewController, sender: self)
     }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return listItems.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: UITableViewCell = self.listTableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier)! as UITableViewCell
+        cell.textLabel?.text = self.listItems[indexPath.row]
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            print("You tapped cell number \(indexPath.row).")
+        }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+
+            if editingStyle == .delete {
+
+                listItems.remove(at: indexPath.row)
+                listTableView.deleteRows(at: [indexPath], with: .fade)
+
+            } else if editingStyle == .insert {
+                // Not used in our example, but if you were adding a new row, this is where you would do it.
+            }
+        }
 }
+
+
