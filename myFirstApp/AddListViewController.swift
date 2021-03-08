@@ -36,13 +36,13 @@ class AddListViewController: UIViewController {
         }
         
         dismissButton.backgroundColor = .clear
-        dismissButton.setTitle("×", for: .normal)
+        dismissButton.setTitle("취소", for: .normal)
         dismissButton.setTitleColor(UIColor.darkGray, for: .normal)
         dismissButton.titleLabel?.font = UIFont.systemFont(ofSize: 32)
         dismissButton.addTarget(self, action: #selector(cancel), for: .touchUpInside)
         
         saveButton.backgroundColor = .clear
-        saveButton.setTitle("Save", for: .normal)
+        saveButton.setTitle("완료", for: .normal)
         saveButton.setTitleColor(UIColor.darkGray, for: .normal)
         saveButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         saveButton.addTarget(self, action: #selector(cancel), for: .touchUpInside)

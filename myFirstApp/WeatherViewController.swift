@@ -18,7 +18,8 @@ class weatherViewController: UIViewController {
     
     override func loadView() {
         //let view = UIView(frame: CGRect(x: self.view.bounds.width, y: self.view.bounds.height/2, width: self.view.bounds.width, height: self.view.bounds.height/2))
-        let view = UIView(frame: UIScreen.main.bounds)
+        //let view = UIView(frame: UIScreen.main.bounds)
+        let view = UIView(frame: CGRect(x: 0, y: 300, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 300))
         view.backgroundColor = .white
         self.view = view
     }
