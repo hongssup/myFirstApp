@@ -26,7 +26,6 @@ class HomeViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     lazy var pickerData: [Int] = []
     var pickerNum: String = ""
     
-    //let imagePicker = UIImagePickerController()
     var imageView = UIImageView()
     
     override func loadView() {
@@ -44,7 +43,7 @@ class HomeViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         let minNum = 0
         let maxNum = 30
         pickerData = Array(stride(from: minNum, to: maxNum + 1, by: 1))
-        imageView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        
         calculateDays()
         setupViews()
         addConstraints()
@@ -126,7 +125,10 @@ class HomeViewController: UIViewController, UIPickerViewDataSource, UIPickerView
             photoButton.leadingAnchor.constraint(equalTo: ccButton.trailingAnchor, constant: 16),
             photoButton.bottomAnchor.constraint(equalTo: weatherButton.bottomAnchor),
             photoButton.widthAnchor.constraint(equalTo: weatherButton.widthAnchor),
-            photoButton.heightAnchor.constraint(equalTo: weatherButton.heightAnchor)
+            photoButton.heightAnchor.constraint(equalTo: weatherButton.heightAnchor),
+            
+            imageView.heightAnchor.constraint(equalTo: view.heightAnchor),
+            imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
     
@@ -172,7 +174,7 @@ class HomeViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         let imagePicker = UIImagePickerController()
         imagePicker.sourceType = .photoLibrary
         imagePicker.delegate = self
-        imagePicker.allowsEditing = true
+        //imagePicker.allowsEditing = true
         present(imagePicker, animated: true)
     }
     
