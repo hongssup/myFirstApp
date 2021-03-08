@@ -49,12 +49,13 @@ class CalendarViewController: UIViewController, FSCalendarDataSource, FSCalendar
         calendar.appearance.selectionColor = .darkGray
         
         addScheduleButton.setElevation(ShadowElevation(2), for: .normal)
+        addScheduleButton.addTarget(self, action: #selector(addSchedule), for: .touchUpInside)
     }
     
     private func addConstraints() {
         let safeArea = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
-            calendar.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 20),
+            calendar.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 16),
             calendar.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 10),
             calendar.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -10),
             calendar.heightAnchor.constraint(equalToConstant: 400),
@@ -64,5 +65,15 @@ class CalendarViewController: UIViewController, FSCalendarDataSource, FSCalendar
             addScheduleButton.heightAnchor.constraint(equalToConstant: 40),
             addScheduleButton.widthAnchor.constraint(equalToConstant: 40)
         ])
+    }
+    
+    @objc func addSchedule() {
+        let vc = AddScheduleViewController()
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true, completion: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: false)        
     }
 }

@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import MaterialComponents
 
 class anniversaryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -25,7 +26,6 @@ class anniversaryViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //tableview.frame = CGRect()
         tableview.frame = CGRect(x: 0, y: 100, width: view.frame.width, height: view.frame.height-100)
         tableview.delegate = self
         tableview.dataSource = self
@@ -50,7 +50,7 @@ class anniversaryViewController: UIViewController, UITableViewDelegate, UITableV
             
             titleView.topAnchor.constraint(equalTo: view.topAnchor),
             titleView.widthAnchor.constraint(equalTo: safeArea.widthAnchor),
-            titleView.bottomAnchor.constraint(equalTo: safeArea.topAnchor, constant: 52),
+            titleView.bottomAnchor.constraint(equalTo: safeArea.topAnchor, constant: 56),
             //titleView.heightAnchor.constraint(equalToConstant: 56),
             
             annivTitle.topAnchor.constraint(equalTo: safeArea.topAnchor),
@@ -59,22 +59,22 @@ class anniversaryViewController: UIViewController, UITableViewDelegate, UITableV
             //annivTitle.centerYAnchor.constraint(equalTo: titleView.centerYAnchor),
             
             //dismissButton.centerYAnchor.constraint(equalTo: titleView.centerYAnchor),
-            dismissButton.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 20),
+            dismissButton.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 12),
             dismissButton.topAnchor.constraint(equalTo: safeArea.topAnchor),
             dismissButton.bottomAnchor.constraint(equalTo: titleView.bottomAnchor)
         ])
     }
     
     func initTitle() {
-        titleView.backgroundColor = .darkGray
+        titleView.backgroundColor = MDCPalette.deepOrange.tint300
         annivTitle.textAlignment = .center
-        annivTitle.font = UIFont.systemFont(ofSize: 20)
+        annivTitle.font = UIFont.boldSystemFont(ofSize: 18)
         annivTitle.textColor = .white
         annivTitle.text = "기념일"
         dismissButton.backgroundColor = .clear
         dismissButton.setTitle("닫기", for: .normal)
         dismissButton.setTitleColor(UIColor.white, for: .normal)
-        dismissButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        dismissButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         dismissButton.addTarget(self, action: #selector(cancel), for: .touchUpInside)
         view.addSubview(titleView)
         view.addSubview(annivTitle)
@@ -86,7 +86,6 @@ class anniversaryViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //print(listItems.count)
         return listItems.count
     }
     

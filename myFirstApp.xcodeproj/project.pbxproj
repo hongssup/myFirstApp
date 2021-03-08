@@ -25,6 +25,7 @@
 		F1854D4225EF476C009B42AC /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1854D4125EF476C009B42AC /* ListCell.swift */; };
 		F1854D4525EF7C7D009B42AC /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1854D4425EF7C7D009B42AC /* WeatherViewController.swift */; };
 		F1854D4925EF8CA8009B42AC /* AnniversaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1854D4825EF8CA8009B42AC /* AnniversaryViewController.swift */; };
+		F1854D4E25F62C57009B42AC /* AddScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1854D4D25F62C55009B42AC /* AddScheduleViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		F1854D4125EF476C009B42AC /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		F1854D4425EF7C7D009B42AC /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		F1854D4825EF8CA8009B42AC /* AnniversaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnniversaryViewController.swift; sourceTree = "<group>"; };
+		F1854D4D25F62C55009B42AC /* AddScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddScheduleViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 				F1854D4125EF476C009B42AC /* ListCell.swift */,
 				F1854D4425EF7C7D009B42AC /* WeatherViewController.swift */,
 				F1854D4825EF8CA8009B42AC /* AnniversaryViewController.swift */,
+				F1854D4D25F62C55009B42AC /* AddScheduleViewController.swift */,
 			);
 			path = myFirstApp;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 				F1854D4525EF7C7D009B42AC /* WeatherViewController.swift in Sources */,
 				F15E41D725B833AA00248BD5 /* AppDelegate.swift in Sources */,
 				F145B4CB25B9DC25001375A1 /* BottomNavigationBar.swift in Sources */,
+				F1854D4E25F62C57009B42AC /* AddScheduleViewController.swift in Sources */,
 				F15E41D925B833AA00248BD5 /* SceneDelegate.swift in Sources */,
 				F1854CF725E66B5B009B42AC /* ListViewController.swift in Sources */,
 				F1854D4925EF8CA8009B42AC /* AnniversaryViewController.swift in Sources */,

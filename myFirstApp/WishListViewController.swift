@@ -20,15 +20,23 @@ class WishListViewController:MDCCollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.barStyle = .black  //difference with barTintColor?
-        self.navigationController?.navigationBar.isTranslucent = true
+        //self.navigationController?.navigationBar.backgroundColor = MDCPalette.deepOrange.tint300
+        //self.navigationController?.navigationBar.barStyle = .black  //difference with barTintColor?
+        self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationItem.title = "Wish List"
         self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.navigationBar.barTintColor = MDCPalette.deepOrange.tint300
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         self.collectionView?.register(ListCell.self, forCellWithReuseIdentifier: reusableIdentifierItem)
         self.styler.cellStyle = .card
         wishList = ["먹고 싶은거", "갖고 싶은거", "하고 싶은거", "가고 싶은 곳"]
         iconList = [.fontAwesomeIcon(name: .utensils), .fontAwesomeIcon(name: .gift), .fontAwesomeIcon(name: .pepperHot), .fontAwesomeIcon(name: .car)]
         colorList = [MDCPalette.red.tint300, MDCPalette.purple.tint300, MDCPalette.deepPurple.tint300, MDCPalette.indigo.tint300]
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        
     }
     
     // MARK: UICollectionViewDataSource
@@ -65,4 +73,8 @@ class WishListViewController:MDCCollectionViewController {
         //self.present(viewController, animated: true, completion: nil)
         //show(viewController, sender: self)
     }
+    
+//    override func viewWillDisappear(_ animated: Bool) {
+//        self.navigationController?.setNavigationBarHidden(true, animated: false)
+//    }
 }

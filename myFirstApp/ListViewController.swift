@@ -19,6 +19,9 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     init(title: String) {
         super.init(nibName: nil, bundle: nil)
+        self.navigationController?.navigationBar.barTintColor = MDCPalette.deepOrange.tint300
+        //self.navigationController?.navigationBar.tintColor = UIColor.white
+        
         //navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         self.title = title
     }
@@ -35,7 +38,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        listTableView.frame = CGRect(x: 0, y: 40, width: view.frame.width-20, height: view.frame.height-100)
+        listTableView.frame = CGRect(x: 0, y: 40, width: view.frame.width, height: view.frame.height-100)
         self.listTableView.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         listTableView.delegate = self
         listTableView.dataSource = self

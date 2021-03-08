@@ -1,17 +1,19 @@
 //
-//  AddListViewController.swift
+//  AddScheduleViewController.swift
 //  myFirstApp
 //
-//  Created by SeoYeon on 2021/03/01.
+//  Created by SeoYeon on 2021/03/08.
 //
 
 import Foundation
 import UIKit
+import MaterialComponents
 
-class AddListViewController: UIViewController {
+class AddScheduleViewController: UIViewController {
     
-    override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
-    override var prefersStatusBarHidden: Bool { return false }
+//    override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
+//    override var prefersStatusBarHidden: Bool { return false }
+    let titleView = UIView()
     let dismissButton = UIButton()
     let saveButton = UIButton()
     let titleLable = UILabel()
@@ -32,6 +34,7 @@ class AddListViewController: UIViewController {
     }
     
     private func setupViews() {
+        view.addSubview(titleView)
         view.addSubview(dismissButton)
         view.addSubview(saveButton)
         view.addSubview(titleLable)
@@ -42,43 +45,49 @@ class AddListViewController: UIViewController {
             view.sizeToFit()
         }
         
+        titleView.backgroundColor = MDCPalette.deepOrange.tint300
+        
         dismissButton.backgroundColor = .clear
         dismissButton.setTitle("취소", for: .normal)
-        dismissButton.setTitleColor(UIColor.darkGray, for: .normal)
+        dismissButton.setTitleColor(UIColor.white, for: .normal)
         dismissButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         dismissButton.addTarget(self, action: #selector(cancel), for: .touchUpInside)
         
         saveButton.backgroundColor = .clear
         saveButton.setTitle("저장", for: .normal)
-        saveButton.setTitleColor(UIColor.darkGray, for: .normal)
+        saveButton.setTitleColor(UIColor.white, for: .normal)
         saveButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         saveButton.addTarget(self, action: #selector(cancel), for: .touchUpInside)
         
-        titleLable.text = "항목 추가"
+        titleLable.text = "일정 추가"
         titleLable.font = UIFont.boldSystemFont(ofSize: 18)
-        titleLable.textColor = .darkGray
+        titleLable.textColor = .white
         
         inputText.font = UIFont.systemFont(ofSize: 16)
-        inputText.borderStyle = UITextField.BorderStyle.roundedRect
+        //inputText.borderStyle = UITextField.BorderStyle.roundedRect
         inputText.autocapitalizationType = .none
-        //inputText.backgroundColor = .lightGray
+        inputText.backgroundColor = .lightGray
     }
     
     private func addConstraints() {
         let safeArea = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
-            dismissButton.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 12),
+            titleView.topAnchor.constraint(equalTo: view.topAnchor),
+            titleView.widthAnchor.constraint(equalTo: safeArea.widthAnchor),
+            titleView.bottomAnchor.constraint(equalTo: safeArea.topAnchor, constant: 44),
+            
+            dismissButton.topAnchor.constraint(equalTo: safeArea.topAnchor),
             dismissButton.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
             dismissButton.widthAnchor.constraint(equalToConstant: 64),
-            dismissButton.heightAnchor.constraint(equalToConstant: 40),
+            dismissButton.bottomAnchor.constraint(equalTo: titleView.bottomAnchor),
             
-            saveButton.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 12),
+            saveButton.topAnchor.constraint(equalTo: safeArea.topAnchor),
             saveButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
             saveButton.widthAnchor.constraint(equalToConstant: 64),
-            saveButton.heightAnchor.constraint(equalToConstant: 40),
+            saveButton.bottomAnchor.constraint(equalTo: titleView.bottomAnchor),
             
-            titleLable.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 12),
-            titleLable.heightAnchor.constraint(equalToConstant: 40),
+            titleLable.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            titleLable.bottomAnchor.constraint(equalTo: titleView.bottomAnchor),
             titleLable.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
             
             inputText.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 80),
@@ -91,5 +100,4 @@ class AddListViewController: UIViewController {
     @objc func cancel(sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
-    
 }

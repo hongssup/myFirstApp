@@ -152,7 +152,7 @@ class HomeViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     
     @objc func showAnniversary() {
         let viewController2 = anniversaryViewController()
-        viewController2.modalPresentationStyle = .fullScreen
+        //viewController2.modalPresentationStyle = .fullScreen
         present(viewController2, animated: true, completion: nil)
     }
     
@@ -191,9 +191,9 @@ class HomeViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         return pickerNum
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
-    }
+//    override func viewWillDisappear(_ animated: Bool) {
+//        self.navigationController?.setNavigationBarHidden(false, animated: false)
+//    }
 }
 
 // MARK: - UIIMagePickerControllerDelegate Methods
