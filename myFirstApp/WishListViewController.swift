@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import MaterialComponents
 
-class WishListViewController:MDCCollectionViewController {
+class WishListViewController: MDCCollectionViewController {
     
     let reusableIdentifierItem = "itemCellIdentifier"
     var wishList: [String] = []
@@ -22,6 +22,7 @@ class WishListViewController:MDCCollectionViewController {
         super.viewDidLoad()
         //self.navigationController?.navigationBar.backgroundColor = MDCPalette.deepOrange.tint300
         //self.navigationController?.navigationBar.barStyle = .black  //difference with barTintColor?
+        //self.view.backgroundColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1)
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationItem.title = "Wish List"
         self.navigationController?.navigationBar.tintColor = UIColor.white
@@ -62,7 +63,7 @@ class WishListViewController:MDCCollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellHeightAt indexPath: IndexPath) -> CGFloat {
-        return 88
+        return 76
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

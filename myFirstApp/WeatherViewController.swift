@@ -15,19 +15,21 @@ class weatherViewController: UIViewController {
     var icon: String = ""
     let weatherLabel = UILabel()
     let weatherImage = UIImageView()
+    let modalView = UIView()
     
     override func loadView() {
-        //let view = UIView(frame: CGRect(x: self.view.bounds.width, y: self.view.bounds.height/2, width: self.view.bounds.width, height: self.view.bounds.height/2))
-        //let view = UIView(frame: UIScreen.main.bounds)
-        let view = UIView(frame: CGRect(x: 0, y: 300, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 300))
-        view.backgroundColor = .white
+        let view = UIView(frame: UIScreen.main.bounds)
+        view.backgroundColor = .clear
         self.view = view
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         fetchWeather()
         setupViews()
         addConstraints()
+        //self.isModalInPresentation = true
     }
     
     func fetchWeather() {
@@ -37,7 +39,7 @@ class weatherViewController: UIViewController {
                 DispatchQueue.main.async {
                     self.currentWeather = weatherResponse.current
                     self.temperature = self.currentWeather?.temp ?? 0.0
-                    self.weatherLabel.text = "temp: \(self.temperature)"
+                    self.weatherLabel.text = "\(self.temperature)˚c"
                     self.weatherImage.image = UIImage(named: self.currentWeather?.weather[0].icon ?? "01d")
                 }
             case .failure(_ ):
@@ -47,8 +49,15 @@ class weatherViewController: UIViewController {
     }
     
     private func setupViews() {
+        
+        modalView.backgroundColor = .white
+        modalView.layer.cornerRadius = 16
+        
+        weatherLabel.textColor = .darkGray
+        view.addSubview(modalView)
         view.addSubview(weatherLabel)
         view.addSubview(weatherImage)
+        
         view.subviews.forEach { view in
             view.translatesAutoresizingMaskIntoConstraints = false
             view.sizeToFit()
@@ -58,11 +67,23 @@ class weatherViewController: UIViewController {
     private func addConstraints() {
         let safeArea = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
-            weatherLabel.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -50),
-            weatherLabel.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 20),
+            modalView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            modalView.widthAnchor.constraint(equalTo: safeArea.widthAnchor),
+            modalView.heightAnchor.constraint(equalTo: safeArea.heightAnchor, constant: -160),
             
-            weatherImage.bottomAnchor.constraint(equalTo: weatherLabel.topAnchor, constant: -8),
-            weatherImage.leadingAnchor.constraint(equalTo: weatherLabel.leadingAnchor)
+            weatherImage.topAnchor.constraint(equalTo: modalView.topAnchor, constant: 48),
+            weatherImage.centerXAnchor.constraint(equalTo: modalView.centerXAnchor),
+            weatherImage.widthAnchor.constraint(equalToConstant: 68),
+            weatherImage.heightAnchor.constraint(equalToConstant: 68),
+            
+            weatherLabel.topAnchor.constraint(equalTo: weatherImage.bottomAnchor),
+            weatherLabel.centerXAnchor.constraint(equalTo: modalView.centerXAnchor)
         ])
     }
 }
+
+//extension weatherViewController: UIAdaptivePresentationControllerDelegate {
+//    func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
+//        self.dismiss(animated: true, completion: nil)
+//    }
+//}

@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import MaterialComponents.MDCCardCollectionCell
 
-class ListCell: MDCCardCollectionCell {
+class ListCell: UICollectionViewCell {//MDCCardCollectionCell {
     let listLabel = UILabel()
     let listIcon = UILabel()
     let circle = UIView()
@@ -19,8 +19,8 @@ class ListCell: MDCCardCollectionCell {
         super.init(frame: frame)
         
         self.listLabel.font = UIFont.systemFont(ofSize: 16)
-        self.listIcon.font = .fontAwesome(ofSize: 24, style: .solid)
-        self.circle.layer.cornerRadius = 22
+        self.listIcon.font = .fontAwesome(ofSize: 16, style: .solid)
+        self.circle.layer.cornerRadius = 16
         self.circle.sizeToFit()
         self.countLabel.font = UIFont.systemFont(ofSize: 12)
         self.countLabel.textColor = .gray
@@ -34,10 +34,18 @@ class ListCell: MDCCardCollectionCell {
     }
     
     func setupSubviews() {
-        cornerRadius = 0
-        setShadowElevation(ShadowElevation(0), for: .normal)
-        setBorderWidth(0.5, for: .normal)
-        setBorderColor(.systemGray5, for: .normal)
+        backgroundColor = UIColor(red: 252, green: 252, blue: 252, alpha: 1)
+        //layoutMargins.bottom = 5
+        
+        //layer.cornerRadius = 0
+        layer.borderColor = UIColor.systemGray6.cgColor
+        //layer.borderColor = UIColor.clear.cgColor
+        layer.borderWidth = 0.2
+//        cornerRadius = 0
+//        setShadowElevation(ShadowElevation(0), for: .normal)
+//        setBorderWidth(0.3, for: .normal)
+//        setBorderColor(.systemGray6, for: .normal)
+        
         
         addSubview(listLabel)
         addSubview(circle)
@@ -52,15 +60,17 @@ class ListCell: MDCCardCollectionCell {
         NSLayoutConstraint.activate([
             circle.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
             circle.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            circle.widthAnchor.constraint(equalToConstant: 44),
-            circle.heightAnchor.constraint(equalToConstant: 44),
+            circle.widthAnchor.constraint(equalToConstant: 32),
+            circle.heightAnchor.constraint(equalToConstant: 32),
+            
             listIcon.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             listIcon.centerXAnchor.constraint(equalTo: circle.centerXAnchor),
-            listLabel.topAnchor.constraint(equalTo: circle.topAnchor, constant: 2),
+            
+            listLabel.topAnchor.constraint(equalTo: circle.topAnchor, constant: -2),
             listLabel.leadingAnchor.constraint(equalTo: listIcon.trailingAnchor, constant: 24),
             
             countLabel.leadingAnchor.constraint(equalTo: listLabel.leadingAnchor),
-            countLabel.bottomAnchor.constraint(equalTo: circle.bottomAnchor)
+            countLabel.bottomAnchor.constraint(equalTo: circle.bottomAnchor, constant: 4)
             
         ])
     }

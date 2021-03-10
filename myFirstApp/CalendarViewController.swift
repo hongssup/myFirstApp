@@ -47,8 +47,10 @@ class CalendarViewController: UIViewController, FSCalendarDataSource, FSCalendar
         calendar.appearance.weekdayTextColor = .darkGray
         calendar.appearance.titleWeekendColor = MDCPalette.deepOrange.tint800
         calendar.appearance.selectionColor = .darkGray
-        
-        addScheduleButton.setElevation(ShadowElevation(2), for: .normal)
+
+        addScheduleButton.setImage(.fontAwesomeIcon(name: .plus, style: .solid, textColor: .white, size: CGSize(width: 24, height: 24)), for: .normal)
+        addScheduleButton.backgroundColor = MDCPalette.deepOrange.tint300
+        addScheduleButton.setElevation(ShadowElevation(1), for: .normal)
         addScheduleButton.addTarget(self, action: #selector(addSchedule), for: .touchUpInside)
     }
     
