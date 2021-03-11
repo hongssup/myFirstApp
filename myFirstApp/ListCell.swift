@@ -34,7 +34,7 @@ class ListCell: UICollectionViewCell {//MDCCardCollectionCell {
     }
     
     func setupSubviews() {
-        backgroundColor = UIColor(red: 252, green: 252, blue: 252, alpha: 1)
+        backgroundColor = UIColor(red: 250, green: 250, blue: 250, alpha: 1)
         //layoutMargins.bottom = 5
         
         //layer.cornerRadius = 0

@@ -16,7 +16,7 @@ class WishListViewController: MDCCollectionViewController {
     var iconList: [String] = []
     var colorList: [UIColor] = []
     override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
-    override var prefersStatusBarHidden: Bool { return false }
+    //override var prefersStatusBarHidden: Bool { return false }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +31,7 @@ class WishListViewController: MDCCollectionViewController {
         self.collectionView?.register(ListCell.self, forCellWithReuseIdentifier: reusableIdentifierItem)
         self.styler.cellStyle = .card
         wishList = ["먹고 싶은거", "갖고 싶은거", "하고 싶은거", "가고 싶은 곳"]
-        iconList = [.fontAwesomeIcon(name: .utensils), .fontAwesomeIcon(name: .gift), .fontAwesomeIcon(name: .pepperHot), .fontAwesomeIcon(name: .car)]
+        iconList = [.fontAwesomeIcon(name: .utensils), .fontAwesomeIcon(name: .gift), .fontAwesomeIcon(name: .palette), .fontAwesomeIcon(name: .car)]
         colorList = [MDCPalette.red.tint300, MDCPalette.purple.tint300, MDCPalette.deepPurple.tint300, MDCPalette.indigo.tint300]
     }
     

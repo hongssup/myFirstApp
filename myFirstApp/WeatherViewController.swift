@@ -16,6 +16,7 @@ class weatherViewController: UIViewController {
     let weatherLabel = UILabel()
     let weatherImage = UIImageView()
     let modalView = UIView()
+    let dismissButton = UIButton()
     
     override func loadView() {
         let view = UIView(frame: UIScreen.main.bounds)
@@ -51,12 +52,18 @@ class weatherViewController: UIViewController {
     private func setupViews() {
         
         modalView.backgroundColor = .white
-        modalView.layer.cornerRadius = 16
+        modalView.layer.cornerRadius = 20
         
         weatherLabel.textColor = .darkGray
+
+        dismissButton.setTitle("×", for: .normal)
+        dismissButton.setTitleColor(UIColor.darkGray, for: .normal)
+        dismissButton.titleLabel?.font = UIFont.systemFont(ofSize: 32)
+        dismissButton.addTarget(self, action: #selector(cancel), for: .touchUpInside)
         view.addSubview(modalView)
         view.addSubview(weatherLabel)
         view.addSubview(weatherImage)
+        view.addSubview(dismissButton)
         
         view.subviews.forEach { view in
             view.translatesAutoresizingMaskIntoConstraints = false
@@ -77,8 +84,16 @@ class weatherViewController: UIViewController {
             weatherImage.heightAnchor.constraint(equalToConstant: 68),
             
             weatherLabel.topAnchor.constraint(equalTo: weatherImage.bottomAnchor),
-            weatherLabel.centerXAnchor.constraint(equalTo: modalView.centerXAnchor)
+            weatherLabel.centerXAnchor.constraint(equalTo: modalView.centerXAnchor),
+            
+            dismissButton.topAnchor.constraint(equalTo: modalView.topAnchor, constant: 8),
+            dismissButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -8),
+            dismissButton.widthAnchor.constraint(equalToConstant: 44),
+            dismissButton.heightAnchor.constraint(equalToConstant: 44)
         ])
+    }
+    @objc func cancel(sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
