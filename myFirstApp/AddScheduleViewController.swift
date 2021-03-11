@@ -25,7 +25,8 @@ class AddScheduleViewController: UIViewController {
     let tableView = UITableView(frame: .zero, style: .plain)
     var inputText = UITextField()
     var inputMemo = UITextField()
-    private var items = ["", "위치", "날짜", "시간"]
+    private var items = ["", "날짜", "시간", "위치"]
+    var itemsResult: [String] = []
     
     override func loadView() {
         super.loadView()
@@ -98,6 +99,7 @@ class AddScheduleViewController: UIViewController {
     
     private func setupTableView() {
         inputText.font = UIFont.systemFont(ofSize: 16)
+        inputText.placeholder = "내용을 입력하세요."
         //inputText.borderStyle = UITextField.BorderStyle.roundedRect
         inputText.autocapitalizationType = .none
         //inputText.backgroundColor = .lightGray
@@ -145,10 +147,10 @@ class AddScheduleViewController: UIViewController {
 //            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
 //            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
-            inputText.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 80),
+            inputText.topAnchor.constraint(equalTo: tableView.topAnchor),
             inputText.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 20),
             inputText.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -20),
-            inputText.heightAnchor.constraint(equalToConstant: 32),
+            inputText.heightAnchor.constraint(equalToConstant: 44),
             
             colorView.topAnchor.constraint(equalTo: titleView.bottomAnchor),
             colorView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),

@@ -14,7 +14,8 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     let ref = Database.database(url: "https://my-first-eb314-default-rtdb.firebaseio.com/").reference(withPath: "wish list")
     var listTableView = UITableView()
-    var listItems = ["a", "b", "c" , "d"]
+    var addListViewController: AddListViewController?
+    public var listItems:[String] = ["l"]
     let cellReuseIdentifier = "cell"
     
     init(title: String) {
@@ -46,8 +47,15 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(addTapped))
     }
     
+//    override func viewWillAppear(_ animated: Bool) {
+//        print("new \(listItems)")
+//        listTableView.reloadData()
+//
+//    }
+    
     @objc func addTapped(sender: UIBarButtonItem) {
         let viewController = AddListViewController()
+        //addList("kjkjk")
         self.present(viewController, animated: true, completion: nil)
         //show(viewController, sender: self)
     }
@@ -74,9 +82,18 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
                 listTableView.deleteRows(at: [indexPath], with: .fade)
 
             } else if editingStyle == .insert {
-                // Not used in our example, but if you were adding a new row, this is where you would do it.
+                //listItems.append(addListViewController?.text ?? "")
+                //listTableView.insertRows(at: [indexPath], with: .fade)
             }
         }
+    public func addList(_ text: String) {
+        print("addlist")
+        let newInexPath = IndexPath(row: 0, section: 0)
+        listItems.append(text)
+        print(listItems)
+        listTableView.insertRows(at: [newInexPath], with: .fade)
+        listTableView.reloadData()
+    }
 }
 
 

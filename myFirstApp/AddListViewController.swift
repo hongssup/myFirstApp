@@ -18,6 +18,9 @@ class AddListViewController: UIViewController {
     
     var inputText = UITextField()
     var inputMemo = UITextField()
+    //var listItems: [String] = ["aa", "ss"]
+    var listViewController: ListViewController?
+    var text = ""
     
     override func loadView() {
         let view = UIView(frame: UIScreen.main.bounds)
@@ -52,7 +55,7 @@ class AddListViewController: UIViewController {
         saveButton.setTitle("저장", for: .normal)
         saveButton.setTitleColor(UIColor.darkGray, for: .normal)
         saveButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        saveButton.addTarget(self, action: #selector(cancel), for: .touchUpInside)
+        saveButton.addTarget(self, action: #selector(save), for: .touchUpInside)
         
         titleLable.text = "항목 추가"
         titleLable.font = UIFont.boldSystemFont(ofSize: 18)
@@ -90,6 +93,21 @@ class AddListViewController: UIViewController {
     
     @objc func cancel(sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func save(sender: UIBarButtonItem) {
+        self.text = inputText.text ?? ""
+        listViewController?.addList(self.text)
+//        let newInexPath = IndexPath(row: 0, section: 0)
+//        listViewController?.listItems.append(text)
+//        listViewController?.listTableView.insertRows(at: [newInexPath], with: .fade)
+            //listViewController?.listItems.append(text ?? "")
+        //listViewController?.listItems.append(text ?? "")
+        //print(listViewController?.listItems)
+        print("save : \(text)")
+        //print("save : \(listViewController?.listItems)")
+        self.dismiss(animated: true, completion: nil)
+        //listViewController?.addList(self.text)
     }
     
 }
