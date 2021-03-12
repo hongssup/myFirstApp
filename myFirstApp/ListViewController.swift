@@ -17,6 +17,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     var addListViewController: AddListViewController?
     public var listItems:[String] = ["l"]
     let cellReuseIdentifier = "cell"
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     init(title: String) {
         super.init(nibName: nil, bundle: nil)
@@ -47,11 +48,12 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(addTapped))
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        print("new \(listItems)")
-//        listTableView.reloadData()
-//
-//    }
+    override func viewWillAppear(_ animated: Bool) {
+        print(appDelegate.itemsList)
+        //print("new \(listItems)")
+        listTableView.reloadData()
+
+    }
     
     @objc func addTapped(sender: UIBarButtonItem) {
         let viewController = AddListViewController()
@@ -61,12 +63,14 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return listItems.count
+        //return listItems.count
+        return appDelegate.itemsList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = self.listTableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier)! as UITableViewCell
-        cell.textLabel?.text = self.listItems[indexPath.row]
+        //cell.textLabel?.text = self.listItems[indexPath.row]
+        cell.textLabel?.text = self.appDelegate.itemsList[indexPath.row]
         return cell
     }
     
@@ -78,7 +82,8 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
 
             if editingStyle == .delete {
 
-                listItems.remove(at: indexPath.row)
+                //listItems.remove(at: indexPath.row)
+                appDelegate.itemsList.remove(at: indexPath.row)
                 listTableView.deleteRows(at: [indexPath], with: .fade)
 
             } else if editingStyle == .insert {
@@ -86,14 +91,14 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
                 //listTableView.insertRows(at: [indexPath], with: .fade)
             }
         }
-    public func addList(_ text: String) {
-        print("addlist")
-        let newInexPath = IndexPath(row: 0, section: 0)
-        listItems.append(text)
-        print(listItems)
-        listTableView.insertRows(at: [newInexPath], with: .fade)
-        listTableView.reloadData()
-    }
+//    public func addList(_ text: String) {
+//        print("addlist")
+//        let newInexPath = IndexPath(row: 0, section: 0)
+//        listItems.append(text)
+//        print(listItems)
+//        listTableView.insertRows(at: [newInexPath], with: .fade)
+//        listTableView.reloadData()
+//    }
 }
 
 

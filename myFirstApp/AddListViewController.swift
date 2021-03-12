@@ -97,7 +97,11 @@ class AddListViewController: UIViewController {
     
     @objc func save(sender: UIBarButtonItem) {
         self.text = inputText.text ?? ""
-        listViewController?.addList(self.text)
+        //let data =
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.itemsList.append(self.text)
+        print(appDelegate.itemsList)
+        //listViewController?.addList(self.text)
 //        let newInexPath = IndexPath(row: 0, section: 0)
 //        listViewController?.listItems.append(text)
 //        listViewController?.listTableView.insertRows(at: [newInexPath], with: .fade)
@@ -105,6 +109,7 @@ class AddListViewController: UIViewController {
         //listViewController?.listItems.append(text ?? "")
         //print(listViewController?.listItems)
         print("save : \(text)")
+        listViewController?.listTableView.reloadData()
         //print("save : \(listViewController?.listItems)")
         self.dismiss(animated: true, completion: nil)
         //listViewController?.addList(self.text)
