@@ -57,7 +57,6 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @objc func addTapped(sender: UIBarButtonItem) {
         let viewController = AddListViewController()
-        //addList("kjkjk")
         self.present(viewController, animated: true, completion: nil)
         //show(viewController, sender: self)
     }
