@@ -25,7 +25,10 @@ class AddScheduleViewController: UIViewController {
     let tableView = UITableView(frame: .zero, style: .plain)
     var inputText = UITextField()
     var inputMemo = UITextField()
-    private var items = ["", "날짜", "시간", "위치"]
+    private var items = ["", "날짜", "", "시간", "위치"]
+    var datePicker = UIDatePicker()
+    var dateLable = UILabel()
+    let dateFormatter = DateFormatter()
     var itemsResult: [String] = []
     
     override func loadView() {
@@ -104,15 +107,28 @@ class AddScheduleViewController: UIViewController {
         inputText.autocapitalizationType = .none
         //inputText.backgroundColor = .lightGray
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell2")
+        //tableView.register(datePickerCell.self, forCellReuseIdentifier: "datePickerCell")
         tableView.dataSource = self
         tableView.delegate = self
         tableView.backgroundColor = .white
+        datePicker.datePickerMode = .date
+        if #available(iOS 13.4, *) {
+            datePicker.preferredDatePickerStyle = .wheels
+        } else {
+            // Fallback on earlier versions
+        }
+        datePicker.locale = Locale(identifier: "ko-KO")
+        datePicker.isHidden = true
+        datePicker.date = Date()
+        dateFormatter.dateFormat = "yyyy.MM.dd"
+        dateLable.text = "\(dateFormatter.string(from: datePicker.date))"
         //tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
         
         view.addSubview(tableView)
         view.addSubview(inputText)
         view.addSubview(inputMemo)
+        view.addSubview(dateLable)
+        view.addSubview(datePicker)
         view.subviews.forEach { view in
             view.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -194,6 +210,10 @@ class AddScheduleViewController: UIViewController {
         }
     }
     
+    @objc func dateChanged(sender: UIDatePicker) {
+        dateLable.text = "\(dateFormatter.string(from: datePicker.date))"
+    }
+    
 }
 
 extension AddScheduleViewController: UITableViewDataSource, UITableViewDelegate {
@@ -220,16 +240,32 @@ extension AddScheduleViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.textLabel?.textColor = .darkGray
         if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             cell.textLabel?.text = items[indexPath.row]
-            cell.textLabel?.textColor = .darkGray
-            cell.selectionStyle = UITableViewCell.SelectionStyle.none
+            switch indexPath.row {
+            case 1:
+                dateLable.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12).isActive = true
+                dateLable.centerYAnchor.constraint(equalTo: cell.centerYAnchor).isActive = true
+                break
+            case 2:
+                datePicker.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12).isActive = true
+                datePicker.topAnchor.constraint(equalTo: cell.topAnchor).isActive = true
+                datePicker.bottomAnchor.constraint(equalTo: cell.bottomAnchor).isActive = true
+
+                break
+            default:
+                break
+            }
+            
+            //cell.selectionStyle = UITableViewCell.SelectionStyle.none
             return cell
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell2", for: indexPath)
+            //let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             cell.textLabel?.text = "메모"
-            cell.textLabel?.textColor = .darkGray
+            cell.textLabel?.topAnchor.constraint(equalTo: cell.topAnchor).isActive = true
+            //cell.textLabel?.textColor = .darkGray
             cell.selectionStyle = UITableViewCell.SelectionStyle.none
             //cell.textLabel?.numberOfLines = 0
             //cell.textLabel?.sizeToFit()
@@ -237,11 +273,31 @@ extension AddScheduleViewController: UITableViewDataSource, UITableViewDelegate 
         }
     }
     
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        if indexPath.section == 0 {
-//            return 44
-//        } else {
-//            return 80
-//        }
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let dpIndexPath = NSIndexPath(row: 1, section: 0)
+        if dpIndexPath as IndexPath == indexPath {
+            datePicker.isHidden = !datePicker.isHidden
+            
+            UIView.animate(withDuration: 0.3, animations: { () -> Void in
+                self.tableView.beginUpdates()
+                
+                self.tableView.deselectRow(at: indexPath, animated: true)
+                self.tableView.endUpdates()
+            })
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            if indexPath.row == 2 {
+                let height:CGFloat = datePicker.isHidden ? 0.0 : 216.0
+                return height
+            } else {
+                return 44
+            }
+        } else {
+            return 80
+        }
+    }
 }

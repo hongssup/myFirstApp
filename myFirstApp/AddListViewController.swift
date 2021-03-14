@@ -18,9 +18,7 @@ class AddListViewController: UIViewController {
     
     var inputText = UITextField()
     var inputMemo = UITextField()
-    //var listItems: [String] = ["aa", "ss"]
     var listViewController: ListViewController?
-    var text = ""
     
     override func loadView() {
         let view = UIView(frame: UIScreen.main.bounds)
@@ -115,7 +113,7 @@ class AddListViewController: UIViewController {
             //listViewController?.listItems.append(text ?? "")
         //listViewController?.listItems.append(text ?? "")
         //print(listViewController?.listItems)
-        print("save : \(text)")
+        //print("save : \(text)")
         listViewController?.listTableView.reloadData()
         self.dismiss(animated: true, completion: nil)
     }
