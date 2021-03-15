@@ -24,11 +24,14 @@ class AddScheduleViewController: UIViewController {
     
     let tableView = UITableView(frame: .zero, style: .plain)
     var inputText = UITextField()
-    var inputMemo = UITextField()
+    var inputMemo = UITextView()
     private var items = ["", "날짜", "", "시간", "위치"]
     var datePicker = UIDatePicker()
-    var dateLable = UILabel()
+    var dateLabel = UILabel()
     let dateFormatter = DateFormatter()
+    let timeLabel = UITextField()
+    let placeLabel = UITextField()
+    let memoLabel = UILabel()
     var itemsResult: [String] = []
     
     override func loadView() {
@@ -117,18 +120,28 @@ class AddScheduleViewController: UIViewController {
         } else {
             // Fallback on earlier versions
         }
-        datePicker.locale = Locale(identifier: "ko-KO")
+        datePicker.locale = Locale(identifier: "ko-KR")
         datePicker.isHidden = true
         datePicker.date = Date()
-        dateFormatter.dateFormat = "yyyy.MM.dd"
-        dateLable.text = "\(dateFormatter.string(from: datePicker.date))"
+        dateFormatter.dateFormat = "yyyy년 MM월 dd일 eeee"
+        //dateFormatter.dateStyle = .short
+        //dateFormatter.timeStyle = .short
+        dateLabel.text = "\(dateFormatter.string(from: datePicker.date))"
+        timeLabel.textAlignment = .right
+        placeLabel.textAlignment = .right
+        memoLabel.text = "메모"
+        memoLabel.textColor = .darkGray
+        inputMemo.font = UIFont.systemFont(ofSize: 16)
         //tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
         
         view.addSubview(tableView)
         view.addSubview(inputText)
         view.addSubview(inputMemo)
-        view.addSubview(dateLable)
+        view.addSubview(dateLabel)
         view.addSubview(datePicker)
+        view.addSubview(timeLabel)
+        view.addSubview(placeLabel)
+        view.addSubview(memoLabel)
         view.subviews.forEach { view in
             view.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -164,7 +177,7 @@ class AddScheduleViewController: UIViewController {
 //            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
             inputText.topAnchor.constraint(equalTo: tableView.topAnchor),
-            inputText.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 20),
+            inputText.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16),
             inputText.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -20),
             inputText.heightAnchor.constraint(equalToConstant: 44),
             
@@ -183,7 +196,16 @@ class AddScheduleViewController: UIViewController {
             meButton.centerYAnchor.constraint(equalTo: colorView.centerYAnchor),
             meButton.leadingAnchor.constraint(equalTo: bothButton.trailingAnchor, constant: 52),
             youButton.centerYAnchor.constraint(equalTo: colorView.centerYAnchor),
-            youButton.leadingAnchor.constraint(equalTo: meButton.trailingAnchor, constant: 52)
+            youButton.leadingAnchor.constraint(equalTo: meButton.trailingAnchor, constant: 52),
+            
+            timeLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
+            timeLabel.widthAnchor.constraint(equalToConstant: 100),
+            placeLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
+            placeLabel.widthAnchor.constraint(equalToConstant: 100),
+            
+            memoLabel.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16),
+            inputMemo.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 12),
+            inputMemo.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16)
         ])
     }
     
@@ -211,7 +233,7 @@ class AddScheduleViewController: UIViewController {
     }
     
     @objc func dateChanged(sender: UIDatePicker) {
-        dateLable.text = "\(dateFormatter.string(from: datePicker.date))"
+        dateLabel.text = "\(dateFormatter.string(from: datePicker.date))"
     }
     
 }
@@ -242,33 +264,46 @@ extension AddScheduleViewController: UITableViewDataSource, UITableViewDelegate 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.textColor = .darkGray
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none
         if indexPath.section == 0 {
             cell.textLabel?.text = items[indexPath.row]
+            
             switch indexPath.row {
             case 1:
-                dateLable.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12).isActive = true
-                dateLable.centerYAnchor.constraint(equalTo: cell.centerYAnchor).isActive = true
+                dateLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12).isActive = true
+                dateLabel.centerYAnchor.constraint(equalTo: cell.centerYAnchor).isActive = true
+                cell.selectionStyle = UITableViewCell.SelectionStyle.default
                 break
             case 2:
+                //datePicker.widthAnchor.constraint(equalTo: cell.widthAnchor).isActive = true
                 datePicker.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12).isActive = true
                 datePicker.topAnchor.constraint(equalTo: cell.topAnchor).isActive = true
                 datePicker.bottomAnchor.constraint(equalTo: cell.bottomAnchor).isActive = true
-
+                break
+            case 3:
+                timeLabel.centerYAnchor.constraint(equalTo: cell.centerYAnchor).isActive = true
+                break
+            case 4:
+                placeLabel.centerYAnchor.constraint(equalTo: cell.centerYAnchor).isActive = true
                 break
             default:
+                
                 break
             }
             
             //cell.selectionStyle = UITableViewCell.SelectionStyle.none
             return cell
         } else {
+            memoLabel.topAnchor.constraint(equalTo: cell.topAnchor, constant: 12).isActive = true
+            inputMemo.topAnchor.constraint(equalTo: cell.topAnchor, constant: 32).isActive = true
+            inputMemo.bottomAnchor.constraint(equalTo: cell.bottomAnchor, constant: -4).isActive = true
             //let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-            cell.textLabel?.text = "메모"
-            cell.textLabel?.topAnchor.constraint(equalTo: cell.topAnchor).isActive = true
+            //cell.textLabel?.text = "메모"
+            //cell.textLabel?.topAnchor.constraint(equalTo: cell.topAnchor).isActive = true
             //cell.textLabel?.textColor = .darkGray
-            cell.selectionStyle = UITableViewCell.SelectionStyle.none
-            //cell.textLabel?.numberOfLines = 0
-            //cell.textLabel?.sizeToFit()
+            //cell.selectionStyle = UITableViewCell.SelectionStyle.none
+            //inputMemo.text//numberOfLines = 0
+            //inputMemo.sizeToFit()
             return cell
         }
     }
@@ -283,9 +318,11 @@ extension AddScheduleViewController: UITableViewDataSource, UITableViewDelegate 
                 self.tableView.beginUpdates()
                 
                 self.tableView.deselectRow(at: indexPath, animated: true)
+                self.dateChanged(sender: self.datePicker)
                 self.tableView.endUpdates()
             })
         }
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -297,7 +334,7 @@ extension AddScheduleViewController: UITableViewDataSource, UITableViewDelegate 
                 return 44
             }
         } else {
-            return 80
+            return 120
         }
     }
 }
