@@ -10,9 +10,9 @@ import UIKit
 import MaterialComponents
 import FirebaseDatabase
 
-class ListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ListViewController: UIViewController {
     
-    let ref = Database.database(url: "https://my-first-eb314-default-rtdb.firebaseio.com/").reference(withPath: "wish list")
+    //let ref = Database.database(url: "https://my-first-eb314-default-rtdb.firebaseio.com/").reference(withPath: "wish list")
     var listTableView = UITableView()
     var addListViewController: AddListViewController?
     public var listItems:[String] = ["l"]
@@ -23,7 +23,6 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.init(nibName: nil, bundle: nil)
         self.navigationController?.navigationBar.barTintColor = MDCPalette.deepOrange.tint300
         //self.navigationController?.navigationBar.tintColor = UIColor.white
-        
         //navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         self.title = title
     }
@@ -50,7 +49,6 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewWillAppear(_ animated: Bool) {
         print(appDelegate.itemsList)
-        //print("new \(listItems)")
         listTableView.reloadData()
 
     }
@@ -60,15 +58,18 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.present(viewController, animated: true, completion: nil)
         //show(viewController, sender: self)
     }
+        
+}
+
+
+extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return listItems.count
         return appDelegate.itemsList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = self.listTableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier)! as UITableViewCell
-        //cell.textLabel?.text = self.listItems[indexPath.row]
         cell.textLabel?.text = self.appDelegate.itemsList[indexPath.row]
         return cell
     }
@@ -80,8 +81,6 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
 
             if editingStyle == .delete {
-
-                //listItems.remove(at: indexPath.row)
                 appDelegate.itemsList.remove(at: indexPath.row)
                 listTableView.deleteRows(at: [indexPath], with: .fade)
 
@@ -90,14 +89,5 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
                 //listTableView.insertRows(at: [indexPath], with: .fade)
             }
         }
-//    public func addList(_ text: String) {
-//        print("addlist")
-//        let newInexPath = IndexPath(row: 0, section: 0)
-//        listItems.append(text)
-//        print(listItems)
-//        listTableView.insertRows(at: [newInexPath], with: .fade)
-//        listTableView.reloadData()
-//    }
 }
-
 

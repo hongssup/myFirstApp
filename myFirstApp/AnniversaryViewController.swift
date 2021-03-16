@@ -12,7 +12,7 @@ import MaterialComponents
 class anniversaryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var tableview = UITableView()
-    var listItems = ["1", "2", "3", "4"]
+    var listItems = ["처음 만난 날", "오늘은", "200일", "300일", "1주년"]
     let cellReuseIdentifier = "cell"
     let titleView = UIView()
     let annivTitle = UILabel()
@@ -44,9 +44,6 @@ class anniversaryViewController: UIViewController, UITableViewDelegate, UITableV
     private func addConstraints() {
         let safeArea = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
-//            tableview.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 20),
-//            tableview.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 20),
-//            tableview.heightAnchor.constraint(equalTo: safeArea.heightAnchor),
             
             titleView.topAnchor.constraint(equalTo: view.topAnchor),
             titleView.widthAnchor.constraint(equalTo: safeArea.widthAnchor),

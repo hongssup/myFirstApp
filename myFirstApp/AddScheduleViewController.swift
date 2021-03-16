@@ -51,7 +51,6 @@ class AddScheduleViewController: UIViewController {
             view.sizeToFit()
         }
         addConstraints()
-        
     }
     
     private func setupTitleView() {
@@ -84,10 +83,9 @@ class AddScheduleViewController: UIViewController {
     private func setupColorView() {
         colorView.backgroundColor = .white
         circle.layer.cornerRadius = 8
-        circle.backgroundColor = .gray
+        circle.backgroundColor = MDCPalette.deepOrange.tint400
         bothButton.setTitle("공동", for: .normal)
-        bothButton.setTitleColor(.gray, for: .normal)
-        //bothButton.setTitleColor(.yellow, for: .selected)
+        bothButton.setTitleColor(MDCPalette.deepOrange.tint400, for: .normal)
         //bothButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         bothButton.addTarget(self, action: #selector(changeColor), for: .touchUpInside)
         meButton.setTitle("본인", for: .normal)
@@ -106,11 +104,8 @@ class AddScheduleViewController: UIViewController {
     private func setupTableView() {
         inputText.font = UIFont.systemFont(ofSize: 16)
         inputText.placeholder = "내용을 입력하세요."
-        //inputText.borderStyle = UITextField.BorderStyle.roundedRect
         inputText.autocapitalizationType = .none
-        //inputText.backgroundColor = .lightGray
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        //tableView.register(datePickerCell.self, forCellReuseIdentifier: "datePickerCell")
         tableView.dataSource = self
         tableView.delegate = self
         tableView.backgroundColor = .white
@@ -123,9 +118,7 @@ class AddScheduleViewController: UIViewController {
         datePicker.locale = Locale(identifier: "ko-KR")
         datePicker.isHidden = true
         datePicker.date = Date()
-        dateFormatter.dateFormat = "yyyy년 MM월 dd일 eeee"
-        //dateFormatter.dateStyle = .short
-        //dateFormatter.timeStyle = .short
+        dateFormatter.dateFormat = "yyyy년 MM월 dd일 (eee)"
         dateLabel.text = "\(dateFormatter.string(from: datePicker.date))"
         timeLabel.textAlignment = .right
         placeLabel.textAlignment = .right
@@ -172,10 +165,6 @@ class AddScheduleViewController: UIViewController {
             titleLable.bottomAnchor.constraint(equalTo: titleView.bottomAnchor),
             titleLable.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
             
-//            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 48),
-//            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            
             inputText.topAnchor.constraint(equalTo: tableView.topAnchor),
             inputText.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16),
             inputText.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -20),
@@ -215,20 +204,20 @@ class AddScheduleViewController: UIViewController {
 
     @objc func changeColor(sender: UIButton) {
         if sender == bothButton {
-            sender.setTitleColor(.yellow, for: .normal)
+            sender.setTitleColor(MDCPalette.deepOrange.tint400, for: .normal)
             meButton.setTitleColor(.gray, for: .normal)
             youButton.setTitleColor(.gray, for: .normal)
-            circle.backgroundColor = .yellow
+            circle.backgroundColor = MDCPalette.deepOrange.tint400
         } else if sender == meButton {
-            sender.setTitleColor(.blue, for: .normal)
+            sender.setTitleColor(MDCPalette.amber.tint400, for: .normal)
             bothButton.setTitleColor(.gray, for: .normal)
             youButton.setTitleColor(.gray, for: .normal)
-            circle.backgroundColor = .blue
+            circle.backgroundColor = MDCPalette.amber.tint400
         } else {
-            sender.setTitleColor(.red, for: .normal)
+            sender.setTitleColor(MDCPalette.blue.tint400, for: .normal)
             bothButton.setTitleColor(.gray, for: .normal)
             meButton.setTitleColor(.gray, for: .normal)
-            circle.backgroundColor = .red
+            circle.backgroundColor = MDCPalette.blue.tint400
         }
     }
     
@@ -243,6 +232,7 @@ extension AddScheduleViewController: UITableViewDataSource, UITableViewDelegate 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 12
     }
+    
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footerView = UIView()
         footerView.backgroundColor = .systemGray6
@@ -262,12 +252,13 @@ extension AddScheduleViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.textColor = .darkGray
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
+        
         if indexPath.section == 0 {
             cell.textLabel?.text = items[indexPath.row]
-            
             switch indexPath.row {
             case 1:
                 dateLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12).isActive = true
@@ -275,7 +266,6 @@ extension AddScheduleViewController: UITableViewDataSource, UITableViewDelegate 
                 cell.selectionStyle = UITableViewCell.SelectionStyle.default
                 break
             case 2:
-                //datePicker.widthAnchor.constraint(equalTo: cell.widthAnchor).isActive = true
                 datePicker.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12).isActive = true
                 datePicker.topAnchor.constraint(equalTo: cell.topAnchor).isActive = true
                 datePicker.bottomAnchor.constraint(equalTo: cell.bottomAnchor).isActive = true
@@ -287,31 +277,21 @@ extension AddScheduleViewController: UITableViewDataSource, UITableViewDelegate 
                 placeLabel.centerYAnchor.constraint(equalTo: cell.centerYAnchor).isActive = true
                 break
             default:
-                
                 break
             }
-            
-            //cell.selectionStyle = UITableViewCell.SelectionStyle.none
             return cell
         } else {
             memoLabel.topAnchor.constraint(equalTo: cell.topAnchor, constant: 12).isActive = true
             inputMemo.topAnchor.constraint(equalTo: cell.topAnchor, constant: 32).isActive = true
             inputMemo.bottomAnchor.constraint(equalTo: cell.bottomAnchor, constant: -4).isActive = true
-            //let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-            //cell.textLabel?.text = "메모"
-            //cell.textLabel?.topAnchor.constraint(equalTo: cell.topAnchor).isActive = true
-            //cell.textLabel?.textColor = .darkGray
-            //cell.selectionStyle = UITableViewCell.SelectionStyle.none
-            //inputMemo.text//numberOfLines = 0
-            //inputMemo.sizeToFit()
             return cell
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let dpIndexPath = NSIndexPath(row: 1, section: 0)
-        if dpIndexPath as IndexPath == indexPath {
+        let dpIndexPath = IndexPath(row: 1, section: 0)
+        if dpIndexPath == indexPath {
             datePicker.isHidden = !datePicker.isHidden
             
             UIView.animate(withDuration: 0.3, animations: { () -> Void in
@@ -322,7 +302,6 @@ extension AddScheduleViewController: UITableViewDataSource, UITableViewDelegate 
                 self.tableView.endUpdates()
             })
         }
-        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

@@ -94,9 +94,7 @@ class AddListViewController: UIViewController {
     }
     
     @objc func save(sender: UIBarButtonItem) {
-        //self.text = inputText.text ?? ""
         guard self.inputText.text?.isEmpty == false else {
-        //guard let data = inputText.text else {
             let alert = UIAlertController(title: nil, message: "내용을 입력해주세요", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true)
@@ -104,16 +102,13 @@ class AddListViewController: UIViewController {
         }
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.itemsList.append(inputText.text ?? "")
-        //appDelegate.itemsList.append(data)
         print(appDelegate.itemsList)
-        //listViewController?.addList(self.text)
 //        let newInexPath = IndexPath(row: 0, section: 0)
 //        listViewController?.listItems.append(text)
 //        listViewController?.listTableView.insertRows(at: [newInexPath], with: .fade)
             //listViewController?.listItems.append(text ?? "")
         //listViewController?.listItems.append(text ?? "")
         //print(listViewController?.listItems)
-        //print("save : \(text)")
         listViewController?.listTableView.reloadData()
         self.dismiss(animated: true, completion: nil)
     }
