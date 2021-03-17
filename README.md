@@ -9,10 +9,9 @@
 
 ## Screenshots
 
-![home](https://user-images.githubusercontent.com/54879476/111481566-709a8e80-8776-11eb-9aaa-5db44b6e8be3.png)
-![calendar](https://user-images.githubusercontent.com/54879476/111481721-9758c500-8776-11eb-9fca-683abcd2fd62.png)
-![add](https://user-images.githubusercontent.com/54879476/111481747-9b84e280-8776-11eb-888f-4584e05c8a2e.png)
-![wishList](https://user-images.githubusercontent.com/54879476/111481754-9de73c80-8776-11eb-8d20-82aa51b53a43.png)
+![home_](https://user-images.githubusercontent.com/54879476/111485773-421eb280-877a-11eb-95f6-3a81e65deb36.png)
+![calendar_](https://user-images.githubusercontent.com/54879476/111485797-477bfd00-877a-11eb-870d-0a1b4d25ead7.png)
+![wishlist_](https://user-images.githubusercontent.com/54879476/111485803-4945c080-877a-11eb-873d-1c6387b11c28.png)
 
 ## Technical requirements
 
